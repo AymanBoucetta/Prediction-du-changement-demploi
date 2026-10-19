@@ -114,4 +114,4 @@ Python, pandas, NumPy, scikit-learn, matplotlib, seaborn.
 
 ## Auteur
 
-Ayman Boucetta, élève ingénieur IA/ML à l'ISMAGI (Témara, Maroc).
+Ayman Boucetta, élève ingénieur IA/ML à l'ISMAGI (Hay Riad, Maroc).
