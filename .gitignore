@@ -10,3 +10,5 @@ wheels/
 # Virtual environments
 .venv
 data/raw
+.python-version
+uv.lock
