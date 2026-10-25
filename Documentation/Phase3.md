@@ -117,14 +117,15 @@ Taux : 19,5 % si vide, contre 25,9 % si remplie. Ici l'écart va **dans l'autre 
 
 Taux : 30,8 % si vide, contre 23,1 % si remplie, soit 7,7 points sur un groupe de 4 508 candidats. C'est une colonne sensible : je ne devine pas une valeur personnelle à la place d'un candidat. Mon hypothèse est que certains candidats ne veulent pas l'indiquer. Je note le risque de biais dans les limites.
 
-### `education_level` (460 cases vides, 2,4 %) : à trancher
+### `education_level` (460 cases vides, 2,4 %) : catégorie « Inconnu »
 
-Taux : 22,6 % si vide, contre 25,0 % si remplie, soit un écart de 2,4 points : presque aucun signal. Deux options :
+Taux : 22,6 % si vide, contre 25,0 % si remplie, soit seulement 2,4 points d'écart : l'absence de réponse porte peu de signal en elle-même. L'hésitation portait donc sur autre chose : remplir par la valeur la plus fréquente (`Graduate`) ou garder une catégorie à part. J'ai choisi « Inconnu », pour trois raisons tirées des données :
 
-- **La valeur la plus fréquente** (`Graduate`) : simple, et l'écart est faible. Mais pour les 460 candidats concernés, `major_discipline` sera « Non applicable », donc je fabriquerais des diplômés sans spécialité, ce qui est incohérent.
-- **« Inconnu »** : plus cohérent avec `major_discipline`. C'est l'option que je préfère.
+- **La cohérence avec `major_discipline`.** Les 460 candidats sans niveau d'études n'ont tous aucune spécialité. Chez les vrais Graduate, ce cas est quasi inexistant : 22 sur 11 598 (0,2 %). Les transformer en Graduate fabriquerait 460 diplômés sans spécialité, un profil que les données ne contiennent presque jamais.
+- **Leur taux n'est pas celui des Graduate.** Ils sont à 22,6 %, contre 28,0 % pour les Graduate, et plus près des Masters (21,4 %). Les mélanger aux Graduate déformerait le taux de ce groupe.
+- **Ce sont des profils plus incomplets en général** : 66,5 % n'ont pas de `company_size`, 43,7 % pas de `gender`. Ce ne sont pas des candidats ordinaires à qui on pourrait attribuer le niveau le plus courant.
 
-Le groupe est petit (2,4 %), donc l'impact est faible dans les deux cas. Je penche pour « Inconnu » : la décision reste ouverte.
+Le groupe est petit (2,4 %), donc l'impact reste faible, mais la catégorie « Inconnu » est la plus honnête.
 
 ### `last_new_job` (423 cases vides, 2,2 %) : conversion, puis médiane
 
@@ -145,7 +146,7 @@ Taux : 35,4 % si vide, contre 24,9 % si remplie. L'écart de 10,5 points ne veut
 | `company_size` | 31,0 % (5 938) | 40,6 % / 17,9 % | catégorie « Inconnu » |
 | `company_type` | 32,0 % (6 140) | 38,8 % / 18,4 % | catégorie « Inconnu » |
 | `major_discipline` | 14,7 % (2 813) | 19,5 % / 25,9 % | catégorie « Non applicable » |
-| `education_level` | 2,4 % (460) | 22,6 % / 25,0 % | « Inconnu » (à confirmer) |
+| `education_level` | 2,4 % (460) | 22,6 % / 25,0 % | catégorie « Inconnu » |
 | `gender` | 23,5 % (4 508) | 30,8 % / 23,1 % | catégorie « Inconnu » |
 | `last_new_job` | 2,2 % (423) | 36,4 % / 24,7 % | conversion, puis médiane |
 | `enrolled_university` | 2,0 % (386) | 31,9 % / 24,8 % | valeur la plus fréquente |
@@ -240,7 +241,6 @@ df2["company_size_vide"] = df["company_size"].isna().astype(int)
 
 ## Ce qui reste ouvert
 
-- La décision pour `education_level` : « Inconnu » ou la valeur la plus fréquente.
 - Le comportement des cases vides une fois le modèle entraîné : `relevent_experience` porte déjà un signal fort, donc je verrai si les cases vides apportent quelque chose en plus.
 
 ## Prochaine étape
