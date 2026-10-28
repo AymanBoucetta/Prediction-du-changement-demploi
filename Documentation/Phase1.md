@@ -222,4 +222,4 @@ print(sys.executable)   # doit finir par .venv\Scripts\python.exe
 
 ## Prochaine étape
 
-La phase 2 : regarder comment la cible varie selon les colonnes. Voir `phase2.md`.
+La phase 2 : regarder comment la cible varie selon les colonnes. Voir `Phase2.md`.
