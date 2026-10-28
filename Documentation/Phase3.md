@@ -158,7 +158,7 @@ Taux : 35,4 % si vide, contre 24,9 % si remplie. L'écart de 10,5 points ne veut
 |---|---|
 | `experience` | `<1` en 0, `>20` en 21, les autres valeurs gardent leur nombre |
 | `last_new_job` | `never` en 0, `>4` en 5, les autres valeurs gardent leur nombre |
-| `company_size` | les tranches en catégories ordonnées (le format `10/49`, avec une barre oblique, est incohérent avec les autres, qui ont un tiret) |
+| `company_size` | aucune conversion en nombres : les tranches restent des catégories, avec « Inconnu » parmi elles (l'ordre des tranches se perd à l'encodage). Le format `10/49`, avec une barre oblique, est incohérent avec les autres, qui ont un tiret |
 
 Ce sont des approximations. Pour `>20`, je ne connais pas la vraie valeur ; pour `<1`, ça va de quelques jours à presque un an. Je prends une valeur raisonnable qui garde l'ordre, et je le dis dans les limites.
 
@@ -245,4 +245,4 @@ df2["company_size_vide"] = df["company_size"].isna().astype(int)
 
 ## Prochaine étape
 
-La phase 4 : découper les données en jeu d'entraînement et jeu de test, avant toute modification. Voir `phase4.md`.
+La phase 4 : découper les données en jeu d'entraînement et jeu de test, avant toute modification. Voir `Phase4.md`.
